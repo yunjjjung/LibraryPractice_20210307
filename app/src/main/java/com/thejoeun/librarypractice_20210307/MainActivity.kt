@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_main.*
@@ -58,6 +59,10 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+//        인터넷의 이미지를 recentImg에 적용
+        Glide.with(mContext).load("http://cdn.crowdpic.net/detail-thumb/thumb_d_2F583E5543F7E19139C6FCFFBF9607A6.jpg").into(recentImg)
+
     }
 
 
