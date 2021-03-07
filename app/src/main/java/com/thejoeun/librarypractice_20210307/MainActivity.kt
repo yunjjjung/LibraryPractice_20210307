@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.jar.Manifest
 
 class MainActivity : BaseActivity() {
 
@@ -40,14 +42,17 @@ class MainActivity : BaseActivity() {
                 }
 
                 override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-                    Toast.makeText(mContext,"", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mContext,"전화 권한 없음", Toast.LENGTH_SHORT).show()
                 }
-
             }
-
 
 //            2. 1에서 만든 행동 방침을 가지고 => 실제 권한 확인
 
+            TedPermission.with(mContext)
+                .setPermissionListener(pl)
+                .setDeniedMessage("권한 거절시 사용 불가. 설정 > 권한에서 세팅 필요")
+                .setPermissions(android.Manifest.permission.CALL_PHONE)
+                .check()
 
         }
     }
